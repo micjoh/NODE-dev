@@ -1,0 +1,2 @@
+<Object=File><Plugin=Files><Scan1=Calculator.lnk><Scan2=C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories><Path=C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Calculator.lnk><SrchStrng=cal><Action=Files.Open>
+

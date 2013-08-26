@@ -175,9 +175,11 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+config.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+db/
 
 # Mac crap
 .DS_Store

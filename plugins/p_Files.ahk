@@ -71,9 +71,12 @@ P_Files_Scan()
 	StringReplace, FolderList, FolderList, `,, |, A
 	StringReplace, FolderList, FolderList, ||,|, A
 	FolderList = %FolderList%				; trimming spaces
+	FolderList = |%FolderList%|				; adding extra |, will be removed later
 	Loop, Parse, DefaultAliasFolders, |			; here we parse the alias names and replace the FolderList matches with the real paths 
-		if InStr("|" FolderList "|", "|" A_LoopField "|")	; retrieved from the static array 1 that we just created above
-			StringReplace, FolderList, FolderList, %A_LoopField%, % P_Files_Int_Storage("1", A_Index)
+		if InStr(FolderList, "|" A_LoopField "|")	; retrieved from the static array 1 that we just created above
+			StringReplace, FolderList, FolderList, |%A_LoopField%|, % "|" P_Files_Int_Storage("1", A_Index) "|"
+	StringTrimLeft, FolderList, FolderList, 1		;removing extra |
+	StringTrimRight, FolderList, FolderList, 1		;removing extra |
 
 	IniRead, TypeList, %File_conf%, %OPlugName%, TypeList, %A_Space%
 	StringRight, i, TypeList, 1

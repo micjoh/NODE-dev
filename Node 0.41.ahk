@@ -1,5 +1,5 @@
 Ver 	= 0.41		;releases only (A simple floating point number enables easy comparison)
-IntVer 	= 0.1		;internal versioning in-between releases
+IntVer 	= 0.2		;internal versioning in-between releases
 
 /*
 

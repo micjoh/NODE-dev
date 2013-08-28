@@ -1,4 +1,4 @@
-Ver 	= 0.40		;releases only (A simple floating point number enables easy comparison)
+Ver 	= 0.41		;releases only (A simple floating point number enables easy comparison)
 IntVer 	= 0.2		;internal versioning in-between releases
 
 /*
@@ -25,6 +25,10 @@ http://dryicons.com for various icons
 
 
 --BEGIN History--
+
+0.41
+-	Fix for Folder Alias bug (Thanks pomj and robertcollier4)
+
 0.40
 -	Added hoppfrosch's DateTime plugin (Thanks hoppfrosch)
 -	Fixed link in About window (Thanks hoppfrosch)

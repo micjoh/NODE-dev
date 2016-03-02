@@ -215,3 +215,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+Alias/fb_play.lnk
+res/icons/_Sylistica-Library_/
+SyncUpstream.cmd
+ForcePull.sh
+_TEST_/

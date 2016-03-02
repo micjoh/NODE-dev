@@ -1,6 +1,6 @@
 /*
 Plugin: DateTime 
-Expansion to application: Node <http://getnode.in>
+Expansion to application: Node <https://github.com/rajat-r/NODE-dev>
 
 Shows date and time in user defined format within Node. Up to 5 different formats could be defined.
 
@@ -15,6 +15,9 @@ guest for SortArray function (http://www.autohotkey.com/community/viewtopic.php?
 --END Credits--
 
 --BEGIN History--
+Version 1.0.5 - 20120906 -(Node 0.41) 
+  [+] Make usage of P_DateTime_ConfInfo()
+  [*] redesigned configuration page (continued)
 Version 1.0.4 - 20120919 -(Node 0.39) 
   [+] TimeZone-functionality (http://www.autohotkey.com/community/viewtopic.php?t=73951)
   [*] redesigned configuration page (continued)
@@ -40,7 +43,7 @@ ExitApp
 ; returns current version of this plugin
 P_DateTime_Version()
 {
-	return "1.0.4"
+	return "1.0.5"
 }
 
 ; Scan to create a database
@@ -71,8 +74,10 @@ P_DateTime_Scan()
 
 P_DateTime_ConfInfo(ByRef Author, ByRef Info)
 {
-	Author = hoppfrosch <hoppfrosch@ahk4.net>
-	Info = Custom Date and Time entries plugin.
+	Author := "hoppfrosch <hoppfrosch@ahk4.net>"
+	Version := P_DateTime_Version()
+	RegExMatch(A_ThisFunc, "U)_(?<PlugName>.*)_", O)	;get the name of this plugin
+	Info := OPlugName " - Version " Version "`nCustom Date and Time entries plugin."
 }
 
 
@@ -232,37 +237,39 @@ P_DateTime_ConfGUI(GUI_ID)
 	HGroupboxMisc := HTab - HGroupboxConfiguration
 	WGroupboxMisc := WTab
 	
-	txtHelp := "Plugin to provide up to 5 Scanstrings (/DateTime1 ... 5)`n"
-	txtHelp := txtHelp "- Enable scanstrings to be used in Node`n"
-	txtHelp := txtHelp "- For Format see AHK-Dokumentation->FormatTime`n"
-	txtHelp := txtHelp "- Use Action 'Copy to Clipboard' ... (Default action)`n"
+	; ######### Define here title contents of the 2 Misc-Boxes ##########################
+	titleBox1 := "Help"
+	txtBox1 := "Plugin to provide up to 5 Scanstrings (/DateTime1 ... 5)`n"
+	txtBox1 := txtBox1 "- Enable scanstrings to be used in Node`n"
+	txtBox1 := txtBox1 "- For Format see AHK-Dokumentation->FormatTime`n"
+	txtBox1 := txtBox1 "- Use Action 'Copy to Clipboard' ... (Default action)`n"
 
-	txtAbout := "Plugin " OPlugName " - Version " P_DateTime_Version()
-	txtAbout := txtAbout "`n"
-	txtAbout := txtAbout "Designed for Node 0.39"
-	txtAbout := txtAbout "`n"
-	txtAbout := txtAbout "by Hoppfrosch (at ahk4 dot me)"
+	titleBox2 := ""
+	txtBox2 := ""
+	; ######### End of Define here title contents of the 2 Misc-Boxes ####################
 	
 	Gui, Add, GroupBox, x%XGroupboxMisc% y%YGroupboxMisc% w%WGroupboxMisc% h%HGroupboxMisc% +Center, Miscellaneous
 	YInnerGroupBox :=  YGroupboxMisc + SpacingVertical
-	XGroupBoxHelp := XGroupboxMisc + SpacingHorizontal
+	XGroupBox1 := XGroupboxMisc + SpacingHorizontal
 	WInnerGroupBox := Floor((WGroupboxMisc - 3 * SpacingHorizontal)/2)
 	HInnerGroupBox := HGroupboxMisc - 2 * SpacingVertical
-	Gui, Add, GroupBox, x%XGroupBoxHelp% y%YInnerGroupBox% w%WInnerGroupBox% h%HInnerGroupBox% +Center, Help
-	XGroupBoxAbout := XGroupBoxHelp + WInnerGroupBox + SpacingHorizontal
-	Gui, Add, GroupBox, x%XGroupBoxAbout% y%YInnerGroupBox% w%WInnerGroupBox% h%HInnerGroupBox% +Center, About
+	; Box 1
+	Gui, Add, GroupBox, x%XGroupBox1% y%YInnerGroupBox% w%WInnerGroupBox% h%HInnerGroupBox% +Center, %titleBox1%
+	XGroupBox2 := XGroupBox1 + WInnerGroupBox + SpacingHorizontal
+	; Box 2
+	Gui, Add, GroupBox, x%XGroupBox2% y%YInnerGroupBox% w%WInnerGroupBox% h%HInnerGroupBox% +Center, %titleBox2%
 	
-	; Help-Groupbox  - Positioning relative to outer Misc-Groupbox
-	XTxtHelp := XGroupBoxHelp + SpacingHorizontal
-	YTxtHelp := YInnerGroupBox + 2 * SpacingVertical
+	; Box1-Groupbox  - Positioning relative to outer Misc-Groupbox
+	XTxtBox1 := XGroupBox1 + SpacingHorizontal
+	YTxtBox1 := YInnerGroupBox + 2 * SpacingVertical
 	; Width of the inner groupboxes (About, Help)
 	WTxtInnerGroupBox := WInnerGroupBox - 2*SpacingHorizontal
-	Gui,Add,Text,x%XTxtHelp% y%YTxtHelp% w%WTxtInnerGroupBox%,%txtHelp%
-	
-	; About-Groupbox  - Positioning relative to Help-Groupbox
-	XTxtAbout := XGroupBoxAbout + SpacingHorizontal
-	YTxtAbout := YInnerGroupBox + 2 * SpacingVertical
-	Gui,Add,Text,x%XTxtAbout% y%YTxtAbout% w%WTxtInnerGroupBox%,%txtAbout%
+	Gui,Add,Text,x%XTxtBox1% y%YTxtBox1% w%WTxtInnerGroupBox%,%txtBox1%
+		
+	; Box2-Groupbox  - Positioning relative to Box1-Groupbox
+	XTxtBox2 := XGroupBox2 + SpacingHorizontal
+	YTxtBox2 := YInnerGroupBox + 2 * SpacingVertical
+	Gui,Add,Text,x%XTxtBox2% y%YTxtBox2% w%WTxtInnerGroupBox%,%txtBox2%
 	
 	Return
 }

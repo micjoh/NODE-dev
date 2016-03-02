@@ -25,11 +25,13 @@ An example is the calculator functionality, where you just start typing a mathem
 3. Default hotkey is **Ctrl + /** to bring up the Object search.
 4. Once you have found what you're looking for, press Enter to launch default action or press Tab to select another action.
 5. Top level objects (like Clipboard) can be searched easily by typing / and their name
+
 And this screenshot here will explain a some of the interface's properties:
-![Node in Action]("http://snag.gy/7fkpw.jpg")
->
+![Node in Action](http://snag.gy/7fkpw.jpg)
+
+
 ## Ideology ##
->The framework is based on Objects and Actions. You select an object, and then decide on an action to be performed on it. The most basic form of Object would be an application, and the simplest of Actions would be to open it. Then things start getting more interesting, another object can be clipboard text, and action can be remove formatting (so maybe you could paste it easily in GMail). Or an object can be a phrase you just typed, and action can be a web search or addition to Google Calendar.<br/>
+The framework is based on Objects and Actions. You select an object, and then decide on an action to be performed on it. The most basic form of Object would be an application, and the simplest of Actions would be to open it. Then things start getting more interesting, another object can be clipboard text, and action can be remove formatting (so maybe you could paste it easily in GMail). Or an object can be a phrase you just typed, and action can be a web search or addition to Google Calendar.<br/>
 Also, it learns and tries to best understand what you're looking for. For example, if you typed 'pad' and it brought up Notepad first, but you selected Wordpad, the next time you type 'pad' it brings up Wordpad first.</p>
 
 Thank you
